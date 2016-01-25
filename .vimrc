@@ -18,6 +18,8 @@ Plugin 'tpope/vim-rails'
 Plugin 'rust-lang/rust.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdcommenter'
 
 call vundle#end()
 filetype plugin indent on
