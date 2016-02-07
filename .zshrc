@@ -55,7 +55,10 @@ plugins=(brew git rails rbenv osx)
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/.rbenv/bin:$PATH"
+export GOPATH="$HOME/Developer/Go"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+DEFAULT_USER=`whoami`
 
 # rbenv initialization
 eval "$(rbenv init -)"

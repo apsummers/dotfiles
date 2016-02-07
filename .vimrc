@@ -1,28 +1,36 @@
 set nocompatible
-filetype off
 imap jk <Esc>
 let mapleader=","
 
-" vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/bundle')
+Plug 'altercation/vim-colors-solarized'
+Plug 'lukerandall/haskellmode-vim', { 'for': 'haskell' }
+Plug 'bling/vim-airline'
+Plug 'scrooloose/syntastic'
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdcommenter'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'wellle/targets.vim'
+Plug 'airblade/vim-gitgutter'
+call plug#end()
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'lukerandall/haskellmode-vim'
-Plugin 'bling/vim-airline'
-Plugin 'scrooloose/syntastic'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
-Plugin 'rust-lang/rust.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdcommenter'
+" vim-gitgutter
+set updatetime=250
 
-call vundle#end()
-filetype plugin indent on
+" syntastic's recommended defaults
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " vim-colors-solarized
 set background=light
