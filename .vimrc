@@ -18,6 +18,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'wellle/targets.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 " vim-gitgutter
