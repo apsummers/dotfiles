@@ -1,6 +1,8 @@
 set nocompatible
-imap jk <Esc>
+" imap jk <Esc>
 let mapleader=","
+set wildmenu
+set incsearch
 
 call plug#begin('~/.vim/bundle')
 Plug 'altercation/vim-colors-solarized'
@@ -65,3 +67,5 @@ au FileType javascript setlocal shiftwidth=2 tabstop=2
 au FileType java setlocal shiftwidth=4 tabstop=4
 au FileType groovy setlocal shiftwidth=4 tabstop=4
 au FileType eruby setlocal shiftwidth=2 tabstop=2
+au FileType json setlocal shiftwidth=2 tabstop=2
+au FileType php setlocal shiftwidth=4 tabstop=4
