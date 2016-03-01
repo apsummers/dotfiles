@@ -1,13 +1,14 @@
 set nocompatible
 " imap jk <Esc>
-let mapleader=","
+let mapleader=" "
 set wildmenu
 set incsearch
+map <leader>s :source ~/.vimrc<CR>
 
 call plug#begin('~/.vim/bundle')
+Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'lukerandall/haskellmode-vim', { 'for': 'haskell' }
-Plug 'bling/vim-airline'
 Plug 'scrooloose/syntastic'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
@@ -21,6 +22,8 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'wellle/targets.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
+Plug 'wincent/ferret'
+Plug 'ap/vim-buftabline'
 call plug#end()
 
 " vim-gitgutter
@@ -30,22 +33,39 @@ set updatetime=250
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
 
 " vim-colors-solarized
 set background=light
-let g:solarized_termtrans=1
-let g:solarized_termcolors=16
 colorscheme solarized
 
-" vim-airline
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
+" lightline.vim
+set guifont=Hack\ Regular:h12
+let g:lightline={
+    \ 'colorscheme': 'solarized',
+    \ 'active': {
+    \   'left':[['mode', 'paste'],
+    \           ['fugitive', 'readonly', 'filename', 'modified']]
+    \ },
+    \ 'component': {
+    \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
+    \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+    \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+    \ },
+    \ 'component_visible_condition': {
+    \   'readonly': '(&filetype!="help"&& &readonly)',
+    \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+    \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+    \ },
+    \}
 set laststatus=2
-set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+
+" vim-buftabline
+nnoremap <leader>l :bn<CR>
+nnoremap <leader>h :bp<CR>
 
 " haskellmode-vim
 au BufEnter *.hs compiler ghc
@@ -59,6 +79,9 @@ set tabstop=4
 set relativenumber
 set number
 set colorcolumn=80
+
+" page facing view: side-by-side view of same buffer scrollbound
+nnoremap <leader>vs :<C-u>let @z=&so<cr>:set so=0 noscb<cr>:bo vs<cr>Ljzt:setl scb<cr><C-w>p:setl scb<cr>:let &so=@z<cr>
 
 " file specific changes
 au FileType ruby setlocal shiftwidth=2 tabstop=2
